@@ -6,19 +6,22 @@ fun main() {
 
 fun sortByParity() {
     val nums = arrayOf(3,1,2,4)
-    val newNums = IntArray(nums.size)
-    var arr1Index = 0
-    var arr2StartIndex = 0
-    var arr2EndIndex = nums.size - 1
-    while (arr1Index < nums.size) {
-        if (nums[arr1Index] % 2 == 0) {
-            newNums[arr2StartIndex] = nums[arr1Index]
-            arr2StartIndex++
-        } else if (nums[arr1Index] % 2 != 0) {
-            newNums[arr2EndIndex] = nums[arr1Index]
-            arr2EndIndex--
+    var i = 0
+    var j = nums.size - 1
+    while (i < j) {
+        if (nums[i] % 2 != 0 && nums[j] % 2 == 0) {
+            val temp = nums[i]
+            nums[i] = nums[j]
+            nums[j] = temp
+            i++
+            j--
         }
-        arr1Index++
+        if (nums[i] % 2 == 0) {
+            i++
+        }
+        if (nums[j] % 2 != 0) {
+            j--
+        }
     }
-    println(newNums.joinToString())
+    println(nums.joinToString())
 }
